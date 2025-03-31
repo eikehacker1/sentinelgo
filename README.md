@@ -89,12 +89,12 @@ pip install flask && pip install requests
 Run the test server:
 
 ```bash
-python3 /python/server.py
+python3 python/server.py
 ```
 Run the exploit:
 
 ```bash
-python3 /requests/teste.py
+python3 requests/teste.py
 ```
 
 ### If everything is ok, then you will see a message like this on your discord server
