@@ -1,0 +1,7 @@
+whitelist:
+  ips:
+    #- "127.0.0.1"
+   # - "192.168.0.1"
+  domains:
+    - "example.com"
+    - "trusted.com"

